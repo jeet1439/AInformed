@@ -1,0 +1,68 @@
+const API_KEY = "9892808218a44079bdf63767c1809c56";
+
+const url = "httppps://newsapi.org/v2/everything?q=";
+
+const reload  = () =>{
+    window.location.reload();
+}
+const fetchNews = async (query) => {
+   try {
+    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+    const data = await res.json();
+    console.log(data);
+    bindData(data.articles);
+   } catch (error) {
+    console.log("error");
+   }
+};
+const bindData = (articles) =>{
+    const cardContainer = document.getElementById("cardContainer");
+    const newsCardTemplate = document.getElementById("templateNews");
+    cardContainer.innerHTML = " ";
+    articles.forEach((article) => {
+        if(!article.urlToImage) return;
+        const cardClone = newsCardTemplate.content.cloneNode(true);
+        fillDataInCard(cardClone, article);
+        cardContainer.appendChild(cardClone);
+    });
+};
+const fillDataInCard = (cardClone, article) =>{
+    const newsImage = cardClone.querySelector('#news-img');
+    const newsTitle = cardClone.querySelector('#news-title');
+    const newsSource = cardClone.querySelector('#newsSource');
+    const newsDesc = cardClone.querySelector('#news-desc');
+
+    newsImage.src = article.urlToImage;
+    newsTitle.innerHTML = article.title;
+    newsDesc.innerHTML = article.description;
+
+    const date = new Date(article.publishedAt).toLocaleString("en-US",{
+        timeZone: "Asia/Jakarta"
+    });
+    newsSource.innerHTML = `${article.source.name} . ${date}`;
+
+    cardClone.firstElementChild.addEventListener('click', ()=>{
+        window.open(article.url, "_blank");
+    })
+}
+curSelectedNav = null;
+const onNavItemClick = (id) =>{
+    fetchNews(id);
+    const navItem = document.getElementById(id);
+    curSelectedNav?.classList.remove("active");
+    curSelectedNav = navItem;
+    curSelectedNav.classList.add("active");
+};
+
+const searchBtn = document.getElementById('searchButton');
+const searchText = document.querySelector('.newsInput');
+
+searchBtn.addEventListener('click', () =>{
+    const query = searchText.value;
+    if(!query) return;
+    fetchNews(query);
+    curSelectedNav?.classList.remove('active');
+    curSelectedNav = null;
+});
+
+window.addEventListener("load",fetchNews("India"));
