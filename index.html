@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Net news</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./resources/favicon.ico" type="image/x-icon">
 </head>
 <body>
      <nav>
@@ -25,8 +26,12 @@
             </div>
         </div>
      </nav>
-
      <main>
+        <div class="overlay" id="overlay">
+            <div class="popup" id="popup">
+              <h4>Ai is summerising ur data...</h4>
+            </div>
+          </div>
         <div class="card-container container flex" id="cardContainer">
             
         <!-- appending here -->
@@ -34,6 +39,7 @@
     </main>
     <template id="templateNews">
         <div class="card" >
+            <div class="askAi" id="askAi"><img src="./resources/logo-black.png" alt="ai" srcset=""></div> 
             <div class="card-header">
                 <img src="https://via.placeholder.com/400x200" alt="news-img" id="news-img">
             </div>
@@ -44,6 +50,6 @@
             </div>
         </div>
     </template>
-    <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
