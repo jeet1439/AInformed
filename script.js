@@ -1,6 +1,6 @@
-const API_KEY = "9892808218a44079bdf63767c1809c56";
+const API_KEY = "9892808218a44079bdf63767c1809c562004";
 
-const url = "https://newsapi.org/v2/everything?q=";
+const url = "httppps://newsapi.org/v2/everything?q=";
 
 const reload = () => {
     window.location.reload();
@@ -19,10 +19,10 @@ const fetchNews = async (query) => {
 
 const fetchSummarizedData = async (url2) => {
     try {
-    const response = await fetch(`https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${url2}`, {
+    const response = await fetch(`httppps://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${url2}`, {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': 'a323285aecmsh2b6b2164e65acb4p184469jsn17c3db27ea22',
+                'x-rapidapi-key': 'a323285aecmsh2b6b2164e65acb4p184469jsn17c3db27ea222004',
                 'x-rapidapi-host': 'article-extractor-and-summarizer.p.rapidapi.com',
                 'Content-Type': 'application/json'
             }
